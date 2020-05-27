@@ -1,0 +1,75 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-lg-6 offset-lg-3 my-5">
+      <img class="w-50 rounded mx-auto d-block rounded-circle" src="https://www.insane.net.au/wp-content/uploads/2019/11/placeholder-profile-male.jpg" alt="profile">
+      <%= if @current_user == @user do %>
+        <button class="btn btn-link btn-block">Change Profile Picture</button>
+      <% end %>
+      <h1 class="my-4 text-center"><%= @user.name %></h1>
+      <ul class="list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Name:
+          <span><%= @user.name %></span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Username:
+          <span><%= @user.username %></span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Email:
+          <span><%= @user.email %></span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Videos Posted:
+          <span class="badge badge-primary badge-pill"><%= Enum.count(@videos) %></span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Annotations:
+          <span class="badge badge-primary badge-pill"><%= Enum.count(@annotations) %></span>
+        </li>
+      </ul>
+      <%= if @current_user == @user do %>
+        <%= link "Edit Profile", to: Routes.page_path(@conn, :index), class: "btn btn-warning btn-block" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row my-3">
+    <div class="col-12 col-lg-8">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">Videos</h3>
+          <hr>
+          <div class="list-group">
+            <%= for vid <- @videos do %>
+              <%= link to: Routes.watch_path(@conn, :show, vid), class: "list-group-item list-group-item-action flex-column align-items-start" do %>
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1 w-75 text-truncate"><%= vid.title %></h5>
+                  <small><%= trunc(NaiveDateTime.diff(NaiveDateTime.utc_now(), vid.inserted_at) / 86400) %> Days Ago</small>
+                </div>
+                <p class="mb-1"><%= vid.description %></p>
+                <small>Click to view now</small>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-12 col-lg-4">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">Annotations</h3>
+          <hr>
+          <ul class="list-group">
+            <%= for ann <- @annotations do %>
+              <%= link to: Routes.watch_path(@conn, :show, ann.video), class: "list-group-item d-flex flex-column list-group-item-action justify-content-between align-items-center" do %>
+                <small><b><%= ann.video.title %></b></small>
+                <small><%= ann.body %></small>
+              <% end %>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

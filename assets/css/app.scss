@@ -1,0 +1,32 @@
+@import "../node_modules/bootswatch/dist/lux/variables";
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+@import "../node_modules/bootswatch/dist/lux/bootswatch";
+@import "../node_modules/toastr/toastr";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+}
+
+#yt-container {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%; /* The height of the item will now be 56.25% of the width. */
+}
+
+#yt-container {
+  iframe {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+  }
+}

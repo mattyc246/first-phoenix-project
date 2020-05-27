@@ -1,0 +1,25 @@
+<div class="container">
+  <h1 class="my-5">Listing Videos</h1>
+  <div class="row">
+    <%= for video <- @videos do %>
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card border-secondary mb-3 h-100">
+          <div class="card-header text-truncate"><%= video.title %></div>
+          <img style="width: 100%; display: block;" src="https://img.youtube.com/vi/<%= player_id(video)%>/sddefault.jpg" alt="Card image">
+          <div class="card-body">
+            <p class="card-text text-truncate"><%= video.description %></p>
+            <%= link "Watch", to: Routes.watch_path(@conn, :show, video), class: "card-link" %>
+            <%= link "Edit", to: Routes.video_path(@conn, :edit, video), class: "card-link" %>
+            <%= link "Delete", to: Routes.video_path(@conn, :delete, video), method: :delete, data: [confirm: "Are you sure?"], class: "card-link text-danger" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="row">
+    <div class="col-12 col-md-6 offset-md-3">
+      <%= link "New Video", to: Routes.video_path(@conn, :new), class: "btn btn-success btn-block my-4" %>
+    </div>
+  </div>
+</div>
+

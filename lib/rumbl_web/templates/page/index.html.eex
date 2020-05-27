@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="jumbotron my-5">
+    <h1 class="display-3">rumbl.io</h1>
+    <p class="lead">Let's get ready to rumbl.</p>
+    <hr class="my-4">
+    <p>The worlds leading video sharing platform.</p>
+    <p class="lead">
+      <a class="btn btn-secondary" href="#" role="button">Learn more</a>
+    </p>
+  </div>
+</div>

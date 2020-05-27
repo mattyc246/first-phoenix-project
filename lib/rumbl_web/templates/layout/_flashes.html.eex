@@ -1,0 +1,15 @@
+<%= if get_flash(@conn, :info) do %>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      window.toastr.info("<%= get_flash(@conn, :info) %>")
+    })
+  </script>
+<% end %>
+
+<%= if get_flash(@conn, :error) do %>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      window.toastr.error("<%= get_flash(@conn, :error) %>")
+    })
+  </script>
+<% end %>
