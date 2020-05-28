@@ -1,0 +1,35 @@
+<div class="container">
+  <h1 class="my-5">Edit Details</h1>
+  <div class="row">
+    <div class="col-12 col-lg-8 offset-lg-2">
+      <%= form_for @changeset, Routes.user_path(@conn, :update, @user), fn f -> %>
+        <%= if @changeset.action do %>
+          <p class="text-danger">Oops, something went wrong! Please check the errors below.</p>
+        <% end %>
+
+        <div class="form-group">
+          <%= label f, :name %>
+          <%= text_input f, :name, class: "form-control" %>
+          <%= error_tag f, :name %>
+        </div>
+
+        <div class="form-group">
+          <%= label f, :username %>
+          <%= text_input f, :username, class: "form-control" %>
+          <%= error_tag f, :username %>
+        </div>
+
+        <div class="form-group">
+          <%= label f, :email %>
+          <%= email_input f, :email, class: "form-control"%>
+          <%= error_tag f, :email %>
+        </div>
+
+        <p class="my-2">Make sure all details are correct before updating</p>
+
+        <%= submit "Update", class: "btn btn-primary btn-block" %>
+      <% end %>
+      <%= link "Cancel Update", to: Routes.user_path(@conn, :show, @user), class: "btn btn-link text-danger" %>
+    </div>
+  </div>
+</div>
